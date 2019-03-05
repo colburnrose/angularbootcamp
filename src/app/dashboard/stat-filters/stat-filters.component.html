@@ -1,20 +1,22 @@
 
-    <div class="card-content">
-      <div class="card-title">Employee Details</div>
+    <div class="mat-card-content">
+      <div class="mat-card-title">Employee Details</div>
       <form [formGroup]="details" (ngSubmit)="save()">
         <div class="three-across">
           <div>
-            <label for="firstName">First Name</label>
+            <label for="firstName">First Name &nbsp; </label>
             <input id="firstName" type="text" formControlName="firstName">
             <div *ngIf="details.get('firstName')?.hasError('required') && details.get('firstName')?.touched">
               Please enter first name
             </div><br>
-            <label for="firstName">Last Name</label>
+            <label for="firstName">Last Name &nbsp;</label>
             <input id="lastName" type="text" formControlName="lastName">
             <div *ngIf="details.get('lastName')?.hasError('required') && details.get('lastName')?.touched">
               Please enter last name
             </div>
-            <button mat-raised-button>Filter</button>
+
+                <button class="mat-button">Filter</button>
+
           </div>
         </div>
       </form>

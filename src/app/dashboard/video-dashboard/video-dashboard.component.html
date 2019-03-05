@@ -1,5 +1,10 @@
 <div class='container'>
-  <app-video-list [videos]="video | async" (selectVideo)="selectedVideo = $event" [selected]="selectedVideo | async"></app-video-list>
-  <app-video-player [video]="selectedVideo | async"></app-video-player>
-  <app-stat-filters></app-stat-filters>
+    <div class="mat-card-content">
+        <div>
+            <app-video-list [videos]="video | async" (selectVideo)="selectedVideo = $event" [selected]="selectedVideo | async"></app-video-list>
+            <app-video-player [video]="selectedVideo | async"></app-video-player><br>
+            <app-stat-filters></app-stat-filters>
+        </div>
+    </div>
+
 </div>
