@@ -21,6 +21,7 @@ const dashboardRoutes: Routes = [
     CommonModule,
     RouterModule.forChild(dashboardRoutes),
     ReactiveFormsModule,
+
   ]
 })
 export class DashboardModule { }

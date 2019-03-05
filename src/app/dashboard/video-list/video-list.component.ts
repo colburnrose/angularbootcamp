@@ -3,6 +3,7 @@
 
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {Video} from '../types';
+import { Router } from '@angular/router';
 
 
 
@@ -17,12 +18,16 @@ export class VideoListComponent  {
 
   @Input() videos: Video[]; // set equal the video list
 
-  @Output() selectVideo = new EventEmitter<Video>();
+  // @Output() selectVideo = new EventEmitter<Video>();
 
- constructor() {}
+ constructor(private router: Router) {}
 
- pickVideo(video: Video) {
-   this.selectVideo.emit(video);
- }
+  onClick(id: string){
+    this.router.navigate([], {
+      queryParams: {selected: id},
+      queryParamsHandling: 'merge'
+    });
+  }
+
 
 }

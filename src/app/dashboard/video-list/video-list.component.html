@@ -3,7 +3,7 @@
     <ul class="collection">
       <li class='collection-item' *ngFor="let video of videos; even as shouldStripe"
       [class.stripe]="video.id === selected?.id"
-      (click)="selectVideo.emit(video)"><app-video [video]="video"></app-video></li>
+      (click)="onClick(video.id)"><app-video [video]="video"></app-video></li>
     </ul>
   </div>
 
