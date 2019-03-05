@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Video } from '../types';
 import { HttpClient } from '@angular/common/http';
+import { VideoLoaderService } from 'src/app/video-loader.service';
+import { Observable } from 'rxjs';
 
 const apiUrl = 'https://api.angularbootcamp.com/videos';
 
@@ -10,15 +12,14 @@ const apiUrl = 'https://api.angularbootcamp.com/videos';
   styleUrls: ['./video-dashboard.component.css']
 })
 export class VideoDashboardComponent  {
-  video: Video[] = []; // set equal to the list of videos.
+  video: Observable<Video[]>; // set equal to the list of videos.
 
   selectedVideo: Video | undefined;
 
-  constructor(http: HttpClient) {
-    http
-    .get<Video[]>(apiUrl)
-    .subscribe(videos => this.video = videos);
+  constructor(videoSvc: VideoLoaderService) {
+    this.video = videoSvc.loadVideos();
   }
+
   setVideo(video: Video) {
     this.selectedVideo = video;
   }

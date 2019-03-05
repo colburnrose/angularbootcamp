@@ -1,5 +1,5 @@
 <div class='container'>
-  <app-video-list [videos]="video" (selectVideo)="setVideo($event)" [selected]="selectedVideo"></app-video-list>
+  <app-video-list [videos]="video | async" (selectVideo)="setVideo($event)" [selected]="selectedVideo"></app-video-list>
   <app-video-player [video]="selectedVideo"></app-video-player>
   <app-stat-filters></app-stat-filters>
 </div>
