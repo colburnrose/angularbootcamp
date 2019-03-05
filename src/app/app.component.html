@@ -1,3 +1,13 @@
 
+<!-- <nav><a routerLink="/profile">Profile</a>&nbsp;<a routerLink="/dashboard">dashboard</a></nav> -->
+
+<nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
+    <div class="container">
+        <ul class="nav navbar-nav" routerLinkActive="active">
+            <li class="nav-item"><a class="nav-link" routerLink="/profile">Profile</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/dashboard">Dashboard</a></li>
+        </ul>
+    </div>
+</nav>
 
 <router-outlet></router-outlet>

@@ -13,7 +13,7 @@ export class VideoLoaderService {
   constructor(private http: HttpClient) {
   }
 
-
+ // handle api service for videos.
   loadVideos(): Observable<Video[]> {
    return this.http.get<Video[]>(apiUrl);
 

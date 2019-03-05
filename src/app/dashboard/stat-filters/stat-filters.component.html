@@ -1,3 +1,23 @@
-<p>
-  stat-filters works!
-</p>
+
+    <div class="card-content">
+      <div class="card-title">Employee Details</div>
+      <form [formGroup]="details" (ngSubmit)="save()">
+        <div class="three-across">
+          <div>
+            <label for="firstName">First Name</label>
+            <input id="firstName" type="text" formControlName="firstName">
+            <div *ngIf="details.get('firstName')?.hasError('required') && details.get('firstName')?.touched">
+              Please enter first name
+            </div><br>
+            <label for="firstName">Last Name</label>
+            <input id="lastName" type="text" formControlName="lastName">
+            <div *ngIf="details.get('lastName')?.hasError('required') && details.get('lastName')?.touched">
+              Please enter last name
+            </div>
+            <button>Filter</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+
