@@ -15,8 +15,12 @@ export class ProfileComponent implements OnInit {
     this.profile = fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
+      middleInitial: ['', Validators.required],
+      position: ['', Validators.required],
+      phoneNumber: ['', Validators.required],
       email: ['', [Validators.email, Validators.required]],
-      status: ['Active', Validators.required]
+      status: ['Active', Validators.required],
+      status2: ['Inactive', Validators.required]
     });
   }
 
