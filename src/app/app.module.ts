@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProfileComponent } from './profile/profile.component';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatCardModule,  } from '@angular/material';
+import { StoreModule } from '@ngrx/store';
+import { AppState, videoStateReducer } from './state';
 
 
 @NgModule({
@@ -23,6 +25,9 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
     MatIconModule,
     MatListModule,
     MatCardModule,
+    StoreModule.forRoot<AppState>({
+      videoState: videoStateReducer
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

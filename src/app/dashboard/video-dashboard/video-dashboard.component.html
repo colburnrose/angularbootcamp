@@ -1,9 +1,9 @@
 
-
 <mat-card class="videoCard">
   <mat-card-title>Top 5 Preview</mat-card-title>
   <mat-card-content>
-    <app-video-list [videos]="video | async" (selectVideo)="selectedVideo = $event" [selected]="selectedVideo | async"></app-video-list>
+    <app-video-list [selected]="selectedVideo | async"
+                    (selectVideo)="selectedVideo = $event" [selected]="selectedVideo | async"></app-video-list>
     <app-video-player [video]="selectedVideo | async"></app-video-player><br>
   </mat-card-content>
 </mat-card>

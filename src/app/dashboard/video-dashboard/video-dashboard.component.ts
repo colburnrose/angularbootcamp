@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Video } from '../types';
 import { VideoLoaderService } from 'src/app/video-loader.service';
 import { Observable, combineLatest } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
-import { map, filter } from 'rxjs/operators';
+import { Store, select } from '@ngrx/store';
+import { AppState } from 'src/app/state';
+
 
 
 
@@ -13,12 +14,13 @@ import { map, filter } from 'rxjs/operators';
   styleUrls: ['./video-dashboard.component.css']
 })
 export class VideoDashboardComponent  {
-  video: Observable<Video[]>; // set equal to the list of videos.
+
   selectedVideo: Observable<Video>;
 
-  constructor(videoSvc: VideoLoaderService) {
-    this.video = videoSvc.videoList$;
-    this.selectedVideo = videoSvc.selectedVideo$;
+  constructor(videoSvc: VideoLoaderService, store: Store<AppState>) {
+    this.selectedVideo = store.pipe(
+      select(state => state.videoState.selectedVideo)
+    );
   }
 
 }

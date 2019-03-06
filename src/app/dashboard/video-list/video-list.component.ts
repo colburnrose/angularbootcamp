@@ -4,6 +4,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {Video} from '../types';
 import { VideoLoaderService } from 'src/app/video-loader.service';
+import { Store, select } from '@ngrx/store';
+import { AppState, SelectVideo } from 'src/app/state';
+import { Observable } from 'rxjs';
 
 
 
@@ -16,14 +19,18 @@ import { VideoLoaderService } from 'src/app/video-loader.service';
 export class VideoListComponent  {
   @Input() selected: Video;
 
-  @Input() videos: Video[]; // set equal the video list
+  videos: Observable<Video[]>; // set equal the video list
 
   // @Output() selectVideo = new EventEmitter<Video>();
 
- constructor(private videoSvc: VideoLoaderService) {}
+ constructor(private store: Store<AppState>) {
+   this.videos = store.pipe(
+     select(state => state.videoState.videos)
+   );
+ }
 
-   onClick(id: string) {
-     this.videoSvc.makeSelection(id);
+   onClick(video: Video) {
+     this.store.dispatch(new SelectVideo(video));
    }
 
 
