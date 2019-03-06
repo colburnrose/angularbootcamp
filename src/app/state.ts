@@ -29,7 +29,7 @@ export interface AppState {
   videoState: VideoState;
 }
 
-const defaultValue = {videos: []}
+const defaultValue = {videos: [] };
 export function videoStateReducer(value: VideoState = defaultValue, action: Action): VideoState {
 
   switch (action.type) {

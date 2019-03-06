@@ -1,1 +1,63 @@
-<p>Profile Works!</p>
+
+
+  <section class="card">
+      <mat-card class="card-content">
+        <div class="card-title">My Profile Details</div>
+        <form [formGroup]="profile" (ngSubmit)="save()">
+          <div class="three-across">
+            <div>
+              <label for="firstName">First Name</label>
+              <input id="firstName" type="text" formControlName="firstName">
+              <div *ngIf="profile.get('firstName')?.hasError('required') && profile.get('firstName')?.touched">
+                Please enter first name
+              </div>
+            </div>
+            <div>
+              <label for="lastName">Last Name</label>
+              <input id="lastName" type="text" formControlName="lastName">
+              <div *ngIf="profile.get('lastName')?.hasError('required') && profile.get('lastName')?.touched">
+                Please enter last name
+              </div>
+            </div>
+            <div>
+              <label for="middleInitial">Middle Initial</label>
+              <input id="middleInitial" type="text" formControlName="middleInitial">
+              <div *ngIf="profile.get('middleInitial')?.hasError('maxlength') && profile.get('middleInitial')?.touched">
+                Only 1 character please
+              </div>
+            </div>
+            <div>
+              <label for="position"> Position: </label>
+              <input id="position" type="text" formControlName="position">
+              <div *ngIf="profile.get('position')?.hasError('minlength') && profile.get('position')?.touched">
+                Position is too short
+              </div>
+            </div>
+            <div>
+              <label for="immediateSupervisor"> Supervisor: </label>
+              <input id="immediateSupervisor" type="text" formControlName="immediateSupervisor">
+            </div>
+            <div>
+              <label for="phone"> Phone: </label>
+              <input id="phone" type="tel" formControlName="phoneNumber" [class.invalid]="profile.get('phoneNumber')?.invalid">
+            </div>
+            <div>
+              <label for="email"> Email: </label>
+              <input class="email-input" id="email" type="email" formControlName="email">
+            </div>
+            <div>
+              <p>
+                <input name="status" formControlName="status" value="Active" type="radio" id="status1">
+                <label for="status1">Active</label>
+              </p>
+              <p>
+                <input name="status" formControlName="status" value="Inactive" type="radio" id="status2">
+                <label for="status2">Inactive</label>
+              </p>
+            </div>
+          </div>
+          <button class="btn-primary" [disabled]="!details.valid" [class.disabled]="!details.valid">Save</button>
+        </form>
+      </mat-card>
+    </section>
+

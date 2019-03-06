@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -6,34 +7,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  id: number;
-  firstname: string;
-  lastname: string;
-  position: string;
-  department: string;
-  phoneNumber: string;
-  email: string;
-  status: string;
 
-  // details: FormGroup;
+  profile: FormGroup;
 
-  constructor() { }
 
-  // constructor(fb: FormBuilder) {
-  //   this.details = fb.group({
-  //     firstName: ['', Validators.required],
-  //     lastName: ['', Validators.required],
-  //     middleInitial: ['', Validators.maxLength(1)],
-  //     position: ['Sales', Validators.minLength(3)],
-  //     department: [''],
-  //     immediateSupervisor: [''],
-  //     phoneNumber: ['', Validators.pattern(/^\d{3}-\d{3}-\d{4}$/)],
-  //     email: ['', [Validators.email, Validators.required]],
-  //     status: ['Active', Validators.required]
-  //   });
-  // }
+  constructor(fb: FormBuilder) {
+    this.profile = fb.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', [Validators.email, Validators.required]],
+      status: ['Active', Validators.required]
+    });
+  }
 
   ngOnInit() {
+  }
+
+  save() {
+    console.log(this.profile.value);
   }
 
 }

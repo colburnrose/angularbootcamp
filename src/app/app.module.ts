@@ -8,6 +8,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatCardModule,  } from '@angular/material';
 import { StoreModule } from '@ngrx/store';
 import { AppState, videoStateReducer } from './state';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { AppState, videoStateReducer } from './state';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule, // make http services available to the application.,
+    ReactiveFormsModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
