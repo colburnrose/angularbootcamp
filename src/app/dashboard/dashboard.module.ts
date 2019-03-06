@@ -8,6 +8,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { VideoComponent } from './video/video.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatCardModule } from '@angular/material';
 
 const dashboardRoutes: Routes = [
   { path: '', component: VideoDashboardComponent },
@@ -21,7 +22,12 @@ const dashboardRoutes: Routes = [
     CommonModule,
     RouterModule.forChild(dashboardRoutes),
     ReactiveFormsModule,
-
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MatCardModule,
   ]
 })
 export class DashboardModule { }

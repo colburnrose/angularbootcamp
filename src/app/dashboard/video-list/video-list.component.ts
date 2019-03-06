@@ -3,7 +3,7 @@
 
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {Video} from '../types';
-import { Router } from '@angular/router';
+import { VideoLoaderService } from 'src/app/video-loader.service';
 
 
 
@@ -20,14 +20,11 @@ export class VideoListComponent  {
 
   // @Output() selectVideo = new EventEmitter<Video>();
 
- constructor(private router: Router) {}
+ constructor(private videoSvc: VideoLoaderService) {}
 
-  onClick(id: string){
-    this.router.navigate([], {
-      queryParams: {selected: id},
-      queryParamsHandling: 'merge'
-    });
-  }
+   onClick(id: string) {
+     this.videoSvc.makeSelection(id);
+   }
 
 
-}
+ }

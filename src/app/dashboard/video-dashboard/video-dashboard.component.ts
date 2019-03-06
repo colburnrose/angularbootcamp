@@ -14,32 +14,11 @@ import { map, filter } from 'rxjs/operators';
 })
 export class VideoDashboardComponent  {
   video: Observable<Video[]>; // set equal to the list of videos.
-
   selectedVideo: Observable<Video>;
 
-  constructor(videoSvc: VideoLoaderService, route: ActivatedRoute) {
-    this.video = videoSvc.loadVideos();
-
-    const selectedId: Observable<string> = route.queryParams
-      .pipe(
-        map(params => params.selected)
-      );
-
-    this.selectedVideo = combineLatest(this.video, selectedId)
-      .pipe(
-        filter(combined => !!(combined[0] && combined.length)),
-        map(combined => {
-          const videosAry = combined[0];
-          const id = combined[1];
-
-          if (!id) {
-            return videosAry[0];
-          }
-
-          const selected = videosAry.find((v: Video) => v.id === id);
-          return selected ? selected : videosAry[0];
-        })
-      );
+  constructor(videoSvc: VideoLoaderService) {
+    this.video = videoSvc.videoList$;
+    this.selectedVideo = videoSvc.selectedVideo$;
   }
 
 }
