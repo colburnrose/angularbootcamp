@@ -9,6 +9,8 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
 import { StoreModule } from '@ngrx/store';
 import { AppState, videoStateReducer } from './state';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EffectsModule } from '@ngrx/effects';
+import { VideoLoaderService } from './video-loader.service';
 
 
 @NgModule({
@@ -29,7 +31,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatCardModule,
     StoreModule.forRoot<AppState>({
       videoState: videoStateReducer
-    })
+    }),
+    EffectsModule.forRoot([VideoLoaderService]),
   ],
   providers: [],
   bootstrap: [AppComponent]

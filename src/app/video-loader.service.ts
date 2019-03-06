@@ -2,30 +2,28 @@ import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject, combineLatest } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Video } from './dashboard/types';
-import { ActivatedRoute, Router } from '@angular/router';
-import { map, filter } from 'rxjs/operators';
-import { Store } from '@ngrx/store';
+import { Effect, Actions, ROOT_EFFECTS_INIT, ofType } from '@ngrx/effects';
 import { AppState, LoadVideo, SelectVideo } from './state';
+import { map, switchMap } from 'rxjs/operators';
 
 const apiUrl = 'https://api.angularbootcamp.com/videos';
 
-@Injectable({
-  providedIn: 'root'
-})
 
+@Injectable()
 export class VideoLoaderService {
 
 
-  constructor(private http: HttpClient, private store: Store<AppState>) {
-     this.http.get<Video[]>(apiUrl).subscribe(videos => {
-      this.store.dispatch(new LoadVideo(videos));
-    });
+  constructor(private http: HttpClient, private action$: Actions) {
 
   }
 
  // handle api service for videos.
-  makeSelection(video: Video) {
-    this.store.dispatch(new SelectVideo(video));
-  }
+
+  @Effect()
+  init$ = this.action$.pipe(
+    ofType(ROOT_EFFECTS_INIT),
+    switchMap(() => this.http.get<Video[]>(apiUrl)),
+    map((videos: Video[]) => new LoadVideo(videos))
+  );
 
 }

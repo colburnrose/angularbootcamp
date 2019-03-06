@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
       phoneNumber: ['', Validators.required],
       email: ['', [Validators.email, Validators.required]],
       status: ['Active', Validators.required],
-      status2: ['Inactive', Validators.required]
+      statusInactive: ['Inactive', Validators.required]
     });
   }
 
